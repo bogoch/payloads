@@ -17,8 +17,7 @@ While ($true)
               SystemParametersInfo(20,0,thePath,3); 
            }
       }
-   } 
-  '@
+   }'@
 
   add-type $code 
 
