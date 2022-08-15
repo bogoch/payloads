@@ -9,7 +9,7 @@ while ($true)
   $counter = 0;
   While ($counter -eq 15)
   {
-    rundll32.exe user32.dll, UpdatePerUserSystemParameters;
+    RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters 1, True;
     Start-Sleep -Seconds 3
     $counter += 1;
   }
