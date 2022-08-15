@@ -20,7 +20,6 @@ While ($true)
    }'@
 
   add-type $code 
-
   #Apply the Change on the system 
   [Win32.Wallpaper]::SetWallpaper($imgPath)
   Start-Sleep -Seconds 3
