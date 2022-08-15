@@ -3,14 +3,27 @@ Invoke-WebRequest "https://ih1.redbubble.net/image.2675223293.8921/flat,750x,075
 Start-Sleep -Seconds 1
 
 
-while ($true)
+While ($true)
 {
-  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name wallpaper -value "$env:USERPROFILE\test.jpg";
-  $counter = 0;
-  While ($counter -eq 15)
-  {
-    RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters 1, True;
-    Start-Sleep -Seconds 3
-    $counter += 1;
-  }
+  $imgPath="$env:USERPROFILE\test.jpg"
+  $code = @' 
+  using System.Runtime.InteropServices; 
+  namespace Win32{ 
+
+       public class Wallpaper{ 
+          [DllImport("user32.dll", CharSet=CharSet.Auto)] 
+           static extern int SystemParametersInfo (int uAction , int uParam , string lpvParam , int fuWinIni) ; 
+
+           public static void SetWallpaper(string thePath){ 
+              SystemParametersInfo(20,0,thePath,3); 
+           }
+      }
+   } 
+  '@
+
+  add-type $code 
+
+  #Apply the Change on the system 
+  [Win32.Wallpaper]::SetWallpaper($imgPath)
+  Start-Sleep -Seconds 3
 }
