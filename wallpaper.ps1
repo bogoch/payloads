@@ -2,7 +2,6 @@ cd $env:USERPROFILE
 Invoke-WebRequest "https://ih1.redbubble.net/image.2675223293.8921/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" -OutFile test.jpg;
 Start-Sleep -Seconds 5
 
-
 While ($true)
 {
   $imgPath="$env:USERPROFILE\test.jpg"
